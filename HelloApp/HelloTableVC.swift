@@ -26,16 +26,16 @@ class HelloTableVC: UITableViewController {
             }
         }
     }
-
+    
     @IBAction func addBtnPressed(_ sender: Any) {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
             let newHappy = Hello(context: context)
-            newHappy.name = "Hello"
+            newHappy.name = "Hello!"
             (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
             getHellos()
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return hellos.count
     }
@@ -50,7 +50,7 @@ class HelloTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentHello = hellos[indexPath.row]
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-                context.delete(currentHello)
+            context.delete(currentHello)
             (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
             getHellos()
         }
